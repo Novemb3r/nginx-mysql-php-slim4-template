@@ -9,19 +9,19 @@ use PDOException;
 
 class Mysql
 {
-
+    /** @var PDO */
     private PDO $connection;
+
 
     public function __construct()
     {
-        $host = getenv('MYSQL_HOST',);
-        $db = getenv('MYSQL_DATABASE',);
-        $port = getenv('MYSQL_PORT',);
-        $username = getenv('MYSQL_USER',);
-        $password = getenv('MYSQL_PASSWORD',);
+        $host = getenv('MYSQL_HOST');
+        $db = getenv('MYSQL_DATABASE');
+        $port = getenv('MYSQL_PORT');
+        $username = getenv('MYSQL_USER');
+        $password = getenv('MYSQL_PASSWORD');
 
-        $dsn = "mysql:host=$host;port=$port;dbname=$db";
-        $this->connection = new PDO($dsn, $username, $password);
+        $this->connection = new PDO("mysql:host=$host;port=$port;dbname=$db", $username, $password);
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
@@ -31,13 +31,5 @@ class Mysql
     public function getConnection(): PDO
     {
         return $this->connection;
-    }
-
-    /**
-     * @param PDO $connection
-     */
-    public function setConnection(PDO $connection): void
-    {
-        $this->connection = $connection;
     }
 }

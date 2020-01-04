@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace App\Entities;
 
-class Cat
+class Cat implements \JsonSerializable
 {
     /**
      * @var int
      */
-    private int $id;
+    private int $id = 0;
 
     /**
      * @var string
      */
-    private string $name;
+    private string $name = '';
 
     /**
      * @var int
      */
-    private int $ownerId;
+    private int $ownerId = 0;
 
     /**
      * @return int
@@ -73,5 +73,17 @@ class Cat
     {
         $this->ownerId = $ownerId;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'ownerId' => $this->getOwnerId()
+        ];
     }
 }

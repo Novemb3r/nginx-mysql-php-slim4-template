@@ -19,6 +19,9 @@ class Format
     {
         $response = $handler->handle($request);
 
+        $response = $response->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+
         return $response;
     }
 }

@@ -30,11 +30,7 @@ class GetCats implements ControllerInterface
     {
         $data = $this->catsService->getAll();
 
-        $response = $response->withHeader('Content-Type', 'application/json')
-            ->withStatus(200);
-
         $response->getBody()->write(json_encode($data));
-
         return $response;
     }
 }

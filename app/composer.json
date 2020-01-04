@@ -19,6 +19,9 @@
       "App\\": "scripts/"
     }
   },
+  "config": {
+    "optimize-autoloader": true
+  },
   "autoload-dev": {
     "psr-4": {
       "App\\Tests\\": "tests/"
